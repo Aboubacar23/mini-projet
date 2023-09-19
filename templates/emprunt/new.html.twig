@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmpruntController!{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card" style="width: 28rem;">
+            <img class="card-img-top" src="{{objet.photo }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{objet.libelle}}</h5>
+                <p>{{ objet.description }}</p>
+            </div>
+        </div>    
+    </div>
+    <div class="col-md-6">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-primary btn-sm">Emprunter</button>
+        {{ form_end(form) }} 
+    </div>
+</div>
+{% endblock %}

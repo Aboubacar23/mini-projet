@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmpruntController!{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 text-left">
+            <h1>Les emprunts</h1>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered table-borderless">
+        <thead class="table-primary">
+            <tr>
+                <th>N°</th>
+                <th>Objet</th>
+                <th>Date Enprumt</th>
+                <th>Date Retour</th>
+                <th>Personne</th>
+                <th width="200" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set i = 0 %}
+        {% for item in items %}
+            {% set i = i + 1 %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{ item.objet }}</td>
+                <td>{{ item.dateDebut | date('d-m-Y') }}</td>
+                <td>{{ item.dateRetour | date('d-m-Y') }}</td>
+                <td>{{ item.personne }}</td>
+                <td class="text-center">
+                    <a class="btn btn-secondary btn-sm" href="{{ path('app_objet_edit', {'id': item.id}) }}">Retourner</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

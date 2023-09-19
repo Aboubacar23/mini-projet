@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet{% endblock %}
+
+{% block body %}
+    <h1>Objet</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card" style="width: 28rem;">
+                <img class="card-img-top" src="{{objet.photo }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{objet.libelle}}</h5>
+                    <p>{{ objet.description }}</p>
+                    <a href="#" class="btn btn-primary text-center">Emprunter</a>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <hr class="mt-4">
+        <a class="btn btn-secondary btn-sm" href="{{ path('app_objet_index') }}">Retour</a>
+        <a class="btn btn-primary btn-sm" href="{{ path('app_objet_edit', {'id': objet.id}) }}">Modifier</a>
+        <a onclick="return confirm('Voulez-vous confirmer ?')" class="btn btn-danger btn-sm" href="{{ path('app_objet_edit', {'id': objet.id}) }}">Supprimer</a>
+    <hr class="mb-4">
+{% endblock %}

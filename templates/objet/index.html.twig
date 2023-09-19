@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Objet index{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 text-left">
+            <h1>La liste des Objets</h1>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="{{ path('app_objet_new') }}" class="btn btn-primary btn-sm text-right">Ajouter</a>
+        </div>
+    </div>
+    <table class="table table-hover table-bordered table-borderless">
+        <thead class="table-primary">
+            <tr>
+                <th>N°</th>
+                <th>Photo</th>
+                <th>Libelle</th>
+                <th>Description</th>
+                <th width="200" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set i = 0 %}
+        {% for objet in objets %}
+            {% set i = i + 1 %}
+            <tr>
+                <td>{{i}}</td>
+                <td><img src="{{ objet.photo }}" alt="" width="70" height="70"></td>
+                <td>{{ objet.libelle }}</td>
+                <td>{{ objet.description }}</td>
+                <td class="text-center">
+                    <a class="btn btn-primary btn-sm" href="{{ path('app_objet_show', {'id': objet.id}) }}">Détails</a>
+                    <a class="btn btn-secondary btn-sm" href="{{ path('app_objet_edit', {'id': objet.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

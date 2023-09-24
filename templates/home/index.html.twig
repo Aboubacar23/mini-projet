@@ -5,15 +5,17 @@
 {% block body %}
 <div class="row">
     {% for item in items %}
-        <div class="col-md-4 mb-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{item.photo }}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{item.libelle}}</h5>
-                    <a href="{{path('app_emprunt_new', {'id' : item.id })}}" class="btn btn-primary text-center">Emprunter</a>
-                </div>
-            </div>    
-        </div>    
+        {% if item.statut == null %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{item.photo }}" alt="Card image cap" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.libelle}}</h5>
+                        <a href="{{path('app_emprunt_new', {'id' : item.id })}}" class="btn btn-primary text-center">Emprunter</a>
+                    </div>
+                </div>    
+            </div>                
+        {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

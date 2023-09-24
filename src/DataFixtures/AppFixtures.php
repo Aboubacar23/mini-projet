@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create();
 
-        for($i = 0; $i < 20;$i++)
+        for($i = 0; $i < 5;$i++)
         {
             $personne = new Personne();
             $personne->setNom($faker->name($gender ='male'|'female'));
@@ -23,12 +23,12 @@ class AppFixtures extends Fixture
             $manager->persist($personne);
         }
                 
-        for($i = 0; $i < 40;$i++)
+        for($i = 0; $i < 10;$i++)
         {
             $objet = new Objet();
             $objet->setLibelle('Objet '.$i);
             $objet->setDescription($faker->text($maxNbChars = 200));
-            $objet->setPhoto($faker->imageUrl($width=640, $height=480, 'cats', true, 'Faker', true));
+            $objet->setPhoto('https://thumbs.dreamstime.com/b/loup-9205133.jpg');
             $manager->persist($objet);
         }
 

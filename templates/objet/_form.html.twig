@@ -1,4 +1,7 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Ajouter') }}</button>
-{{ form_end(form) }}
+<div class="card p-2">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary btn-sm">{{ button_label|default('Ajouter') }}</button>
+        <a class="btn btn-secondary btn-sm" href="{{ path('app_personne_index') }}">Retour</a>
+    {{ form_end(form) }}
+</div>

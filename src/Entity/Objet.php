@@ -28,6 +28,9 @@ class Objet
     #[ORM\OneToMany(mappedBy: 'objet', targetEntity: Emprunt::class)]
     private Collection $emprunts;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $statut = null;
+
     public function __construct()
     {
         $this->emprunts = new ArrayCollection();
@@ -107,5 +110,17 @@ class Objet
     public function __toString()
     {
         return $this->getLibelle();
+    }
+
+    public function isStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(?bool $statut): static
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

@@ -30,7 +30,7 @@
                 <td>{{ item.dateRetour | date('d-m-Y') }}</td>
                 <td>{{ item.personne }}</td>
                 <td class="text-center">
-                    <a class="btn btn-secondary btn-sm" href="{{ path('app_objet_edit', {'id': item.id}) }}">Retourner</a>
+                    <a onclick="return confirm('Voulez-vous confirmer ?')" class="btn btn-secondary btn-sm" href="{{ path('app_emprunt_retour', {'id': item.id}) }}">Retourner</a>
                 </td>
             </tr>
         {% else %}

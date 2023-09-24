@@ -11,7 +11,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{objet.libelle}}</h5>
                     <p>{{ objet.description }}</p>
-                    <a href="#" class="btn btn-primary text-center">Emprunter</a>
+                    {% if objet.statut == null %}
+                        <a href="{{path('app_emprunt_new', {'id' : item.id })}}" class="btn btn-primary text-center">Emprunter</a>
+                    {% endif %}
                 </div>
             </div>    
         </div>

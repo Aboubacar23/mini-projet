@@ -32,7 +32,9 @@ class EmpruntController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) 
         {
             $emprunt->setObjet($objet);
+            $objet->setStatut(1);
             $entityManager->persist($emprunt);
+            $entityManager->persist($objet);
             $entityManager->flush();
             return $this->redirectToRoute('app_emprunt_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -42,5 +44,25 @@ class EmpruntController extends AbstractController
             'form' => $form->createView(),
             'objet' => $objet
         ]);
+    }
+
+
+    #[Route('/retour-objet/{id}', name: 'app_emprunt_retour')]
+    public function retour(Emprunt $emprunt, EntityManagerInterface $entityManager, EmpruntRepository $empruntRepository): Response
+    {
+        if ($emprunt)
+        {
+            $objet = $emprunt->getObjet();
+
+            if ($objet->isStatut())
+            {
+                $objet->setStatut(0); 
+                $entityManager->persist($objet);
+                $entityManager->remove($emprunt);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }
